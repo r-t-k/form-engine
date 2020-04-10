@@ -17,6 +17,7 @@
 </template>
 
 <script>
+	import basicKit from '../form_style_kits/basic-kit.json';
 
 	export default {
 		name    : "FormBasic",
@@ -25,16 +26,7 @@
 				elName  : '',
 				selected: '',
 				rawHtml : '',
-				kit     : {
-					text: {
-						tag        : 'input',
-						selector   : 'kit-basic-el-text',
-						id         : '',
-						type       : 'text',
-						placeholder: 'placeholder',
-					},
-					css : '.kit-basic-form{}',
-				},
+				kit     : basicKit,
 				form    : {}
 			}
 		},
@@ -57,13 +49,15 @@
 			},
 			renderForm() {
 				let self = this;
-				function resetHtml(){
+
+				function resetHtml() {
 					self.rawHtml = '';
-                }
-                resetHtml();
+				}
+
+				resetHtml();
 				Object.keys(this.form).forEach(function (item) {
 					self.rawHtml += self.form[item];
-                    console.log(self.form);
+					console.log(self.form);
 				});
 
 			}

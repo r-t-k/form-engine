@@ -1,0 +1,10 @@
+{
+    "text": {
+        "tag"        : "input",
+        "selector"   : "kit-basic-el-text",
+        "id"         : "",
+        "type"      : "text",
+        "placeholder": "placeholder"
+    },
+    "css" : ".kit-basic-form{}"
+}

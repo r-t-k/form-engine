@@ -1941,6 +1941,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../form_style_kits/basic-kit.json */ "./resources/js/form_style_kits/basic-kit.json");
+var _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../form_style_kits/basic-kit.json */ "./resources/js/form_style_kits/basic-kit.json", 1);
 //
 //
 //
@@ -1959,6 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FormBasic",
   data: function data() {
@@ -1966,16 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
       elName: '',
       selected: '',
       rawHtml: '',
-      kit: {
-        text: {
-          tag: 'input',
-          selector: 'kit-basic-el-text',
-          id: '',
-          type: 'text',
-          placeholder: 'placeholder'
-        },
-        css: '.kit-basic-form{}'
-      },
+      kit: _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0__,
       form: {}
     };
   },
@@ -51342,6 +51336,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormBasicInput_vue_vue_type_template_id_c263c16a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/form_style_kits/basic-kit.json":
+/*!*****************************************************!*\
+  !*** ./resources/js/form_style_kits/basic-kit.json ***!
+  \*****************************************************/
+/*! exports provided: text, css, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"text\":{\"tag\":\"input\",\"selector\":\"kit-basic-el-text\",\"id\":\"\",\"type\":\"text\",\"placeholder\":\"placeholder\"},\"css\":\".kit-basic-form{}\"}");
 
 /***/ }),
 
