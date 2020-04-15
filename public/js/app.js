@@ -1961,12 +1961,18 @@ var _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FormBasic",
   data: function data() {
     return {
       elName: '',
+      elLabel: '',
       selected: '',
       rawHtml: '',
       kit: _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0__,
@@ -1974,7 +1980,11 @@ var _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#
     };
   },
   mounted: function mounted() {},
-  computed: {},
+  computed: {
+    tempForm: function tempForm() {
+      return this.$store.getters.getTempFormData;
+    }
+  },
   methods: {
     createFormEl: function createFormEl() {
       //console.log(this.kit[this.selected]);
@@ -1983,7 +1993,8 @@ var _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#
       var id = this.kit[this.selected].id;
       var selector = this.kit[this.selected].selector;
       var placeholder = this.kit[this.selected].placeholder;
-      var html = '<' + tag + ' type="' + type + '" ' + 'id="' + id + '" ' + 'class="' + selector + '" ' + 'placeholder="' + placeholder + '" ' + '/>';
+      var label = "<label for=\"" + this.elName + "\">" + this.elLabel + "</label>";
+      var html = label + '<' + tag + ' type="' + type + '" ' + 'id="' + id + '" ' + 'class="' + selector + '" ' + 'placeholder="' + placeholder + '" ' + '/>';
       console.log(html);
       this.form[this.elName] = html;
       this.elName = '';
@@ -2000,6 +2011,12 @@ var _form_style_kits_basic_kit_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#
         self.rawHtml += self.form[item];
         console.log(self.form);
       });
+    },
+    updateTempForm: function updateTempForm() {
+      this.$store.commit('setTempFormData', this.form);
+    },
+    toggleEditActive: function toggleEditActive() {
+      this.$store.commit('setFormEdit', true);
     }
   }
 });
@@ -2039,6 +2056,57 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     increase: function increase() {
       this.$store.commit("increment");
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormBasicEdit.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormBasicEdit.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "FormBasicEdit",
+  data: function data() {
+    return {
+      htmlDisplay: ''
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$store.watch(function (state) {
+      return _this.$store.state.formEdit; // could also put a Getter here
+    }, function (newValue, oldValue) {
+      if (newValue === true) {
+        _this.listTempForm();
+      }
+    });
+  },
+  computed: {
+    tempForm: function tempForm() {
+      return this.$store.getters.getTempFormData;
+    }
+  },
+  methods: {
+    listTempForm: function listTempForm() {
+      var self = this;
+      Object.keys(this.tempForm).forEach(function (item) {
+        self.htmlDisplay += itemWithDelete;
+        console.log(self.tempForm);
+      });
     }
   }
 });
@@ -37548,6 +37616,29 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.elLabel,
+          expression: "elLabel"
+        }
+      ],
+      attrs: { type: "text", placeholder: "Element Label" },
+      domProps: { value: _vm.elLabel },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.elLabel = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c(
       "select",
       {
@@ -37602,6 +37693,16 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
+    _c("button", { on: { click: _vm.updateTempForm } }, [_vm._v("Save Form")]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.toggleEditActive } }, [
+      _vm._v("Edit Form")
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c("form", { domProps: { innerHTML: _vm._s(_vm.rawHtml) } })
   ])
 }
@@ -37631,6 +37732,32 @@ var render = function() {
     _c("h1", [_vm._v(_vm._s(_vm.getCount))]),
     _vm._v(" "),
     _c("button", { on: { click: _vm.increase } }, [_vm._v("add 1")])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("form", { domProps: { innerHTML: _vm._s(_vm.htmlDisplay) } })
   ])
 }
 var staticRenderFns = []
@@ -51005,6 +51132,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 Vue.component('form-basic', __webpack_require__(/*! ./components/FormBasic.vue */ "./resources/js/components/FormBasic.vue")["default"]);
 Vue.component('form-basic-input', __webpack_require__(/*! ./components/FormBasicInput.vue */ "./resources/js/components/FormBasicInput.vue")["default"]);
 Vue.component('form-basic-display', __webpack_require__(/*! ./components/FormBasicDisplay.vue */ "./resources/js/components/FormBasicDisplay.vue")["default"]);
+Vue.component('form-basic-edit', __webpack_require__(/*! ./components/FormBasicEdit.vue */ "./resources/js/components/FormBasicEdit.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -51270,6 +51398,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/FormBasicEdit.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/FormBasicEdit.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormBasicEdit_vue_vue_type_template_id_487da099_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true& */ "./resources/js/components/FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true&");
+/* harmony import */ var _FormBasicEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormBasicEdit.vue?vue&type=script&lang=js& */ "./resources/js/components/FormBasicEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormBasicEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormBasicEdit_vue_vue_type_template_id_487da099_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormBasicEdit_vue_vue_type_template_id_487da099_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "487da099",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FormBasicEdit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/FormBasicEdit.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/FormBasicEdit.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormBasicEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormBasicEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormBasicEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormBasicEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormBasicEdit_vue_vue_type_template_id_487da099_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormBasicEdit.vue?vue&type=template&id=487da099&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormBasicEdit_vue_vue_type_template_id_487da099_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormBasicEdit_vue_vue_type_template_id_487da099_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/FormBasicInput.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/FormBasicInput.vue ***!
@@ -51364,7 +51561,9 @@ __webpack_require__.r(__webpack_exports__);
     count: 0,
     form: {},
     raw: [],
-    currentFormId: 1
+    currentFormId: 1,
+    tempFormData: {},
+    formEdit: false
   },
   getters: {
     getCount: function getCount(state) {
@@ -51378,6 +51577,14 @@ __webpack_require__.r(__webpack_exports__);
     getCurrentFormId: function getCurrentFormId(state) {
       //take parameter state
       return state.currentFormId;
+    },
+    getTempFormData: function getTempFormData(state) {
+      //take parameter state
+      return state.tempFormData;
+    },
+    getFormEdit: function getFormEdit(state) {
+      //take parameter state
+      return state.formEdit;
     }
   },
   mutations: {
@@ -51399,6 +51606,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeCurrentForm: function changeCurrentForm(state, val) {
       state.currentFormId = val;
+    },
+    setTempFormData: function setTempFormData(state, val) {
+      state.tempFormData = val;
+    },
+    setFormEdit: function setFormEdit(state, val) {
+      state.formEdit = val;
     }
   },
   actions: {

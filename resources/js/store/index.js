@@ -4,7 +4,9 @@ export default {
         count: 0,
         form : {},
         raw  : [],
-        currentFormId: 1
+        currentFormId: 1,
+        tempFormData : {},
+        formEdit : false,
     },
     getters  : {
         getCount(state) { //take parameter state
@@ -15,6 +17,12 @@ export default {
         },
         getCurrentFormId(state) { //take parameter state
             return state.currentFormId
+        },
+        getTempFormData(state) { //take parameter state
+            return state.tempFormData
+        },
+        getFormEdit(state) { //take parameter state
+            return state.formEdit
         }
     },
     mutations: {
@@ -32,6 +40,12 @@ export default {
         },
         changeCurrentForm(state, val) {
           state.currentFormId = val;
+        },
+        setTempFormData(state, val) {
+            state.tempFormData = val;
+        },
+        setFormEdit(state, val) {
+            state.formEdit = val;
         }
 
     },

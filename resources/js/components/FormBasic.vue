@@ -1,6 +1,7 @@
 <template>
     <div>
         <input v-model="elName" type="text" placeholder="Element name"> <br />
+        <input v-model="elLabel" type="text" placeholder="Element Label"> <br />
         <select v-model="selected">
             <option disabled value="">Please select one</option>
             <option>text</option>
@@ -11,6 +12,10 @@
         <button v-on:click="createFormEl">Create Element</button>
         <br />
         <button v-on:click="renderForm">Render Form</button>
+        <br />
+        <button v-on:click="updateTempForm">Save Form</button>
+        <br />
+        <button v-on:click="toggleEditActive">Edit Form</button>
         <br />
         <form v-html=rawHtml></form>
     </div>
@@ -24,6 +29,7 @@
 		data() {
 			return {
 				elName  : '',
+				elLabel : '',
 				selected: '',
 				rawHtml : '',
 				kit     : basicKit,
@@ -33,7 +39,11 @@
 		mounted() {
 
 		},
-		computed: {},
+		computed: {
+			tempForm() {
+				return this.$store.getters.getTempFormData;
+			},
+		},
 		methods : {
 			createFormEl() {
 				//console.log(this.kit[this.selected]);
@@ -42,7 +52,8 @@
 				let id = this.kit[this.selected].id;
 				let selector = this.kit[this.selected].selector;
 				let placeholder = this.kit[this.selected].placeholder;
-				let html = '<' + tag + ' type="' + type + '" ' + 'id="' + id + '" ' + 'class="' + selector + '" ' + 'placeholder="' + placeholder + '" ' + '/>';
+				let label = `<label for="` + this.elName + `">` + this.elLabel + `</label>`;
+				let html = label + '<' + tag + ' type="' + type + '" ' + 'id="' + id + '" ' + 'class="' + selector + '" ' + 'placeholder="' + placeholder + '" ' + '/>';
 				console.log(html);
 				this.form[this.elName] = html;
 				this.elName = '';
@@ -60,6 +71,12 @@
 					console.log(self.form);
 				});
 
+			},
+			updateTempForm() {
+				this.$store.commit('setTempFormData', this.form);
+			},
+			toggleEditActive() {
+				this.$store.commit('setFormEdit', true);
 			}
 		}
 	}

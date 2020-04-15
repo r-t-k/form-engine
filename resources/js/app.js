@@ -39,6 +39,10 @@ Vue.component(
     'form-basic-display',
     require('./components/FormBasicDisplay.vue').default
 );
+Vue.component(
+    'form-basic-edit',
+    require('./components/FormBasicEdit.vue').default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
