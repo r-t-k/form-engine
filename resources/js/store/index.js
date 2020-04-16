@@ -6,9 +6,6 @@ export default {
         }
     },
     getters  : {
-        getCount(state) { //take parameter state
-            return state.count
-        },
         getForm(state) {
             return state.form
         },
@@ -19,17 +16,15 @@ export default {
 
     },
     mutations: {
-        increment(state) {
-            state.count++
-        },
-        saveRaw(state, val) {
+
+        /*saveRaw(state, val) {
             state.raw = val;
             state.form = state.raw.find(x => x.id === state.currentFormId);
             console.log("loading form by index of: " + state.currentFormId);
-        },
-        setFormEdit(state, val) {
+        },*/
+       /* setFormEdit(state, val) {
             state.formEdit = val;
-        },
+        },*/
         setFormInput(state, payload) {
             if (state.form.inputs[payload.id]) {
                 state.form.inputs[payload.id] = payload.data;
@@ -44,13 +39,7 @@ export default {
 
     },
     actions  : {
-        increment(context) {
-            context.commit('increment')
-        },
-        /*saveForm(context, val) {
-            context.commit('saveForm', val)
-        },*/
-        getFormData(context) {
+        /*getFormData(context) {
             axios.get("api/forms")
                 .then((response) => {
                     console.log(response);
@@ -61,8 +50,8 @@ export default {
                     console.log("Error........")
 
                 })
-        },
-        saveForm(context, newData) {
+        },*/
+      /*  saveForm(context, newData) {
             axios.post("api/forms", {data: newData.data, name: newData.name})
                 .then((response) => {
                     console.log('success');
@@ -73,7 +62,7 @@ export default {
                 .catch(() => {
                     console.log("Post Error........")
                 })
-        },
+        },*/
 
     },
 }
