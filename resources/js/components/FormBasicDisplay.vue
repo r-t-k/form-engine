@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>{{ getCount }}</h1>
-        <button v-on:click="increase">add 1</button>
+        <h2>{{ formInputs.testInput.name }}:</h2> <h3>{{ formInputs.testInput.value}}</h3> <br />
+        <h2>{{ formInputs.testPassword.name }}:</h2> <h3>{{ formInputs.testPassword.value}}</h3> <br />
     </div>
 </template>
 
@@ -13,17 +13,14 @@
 			return {}
 		},
 		mounted() {
-			this.$store.dispatch("increment")
+
 		},
 		computed: {
-			getCount() { //final output from here
-				return this.$store.getters.getCount;
+			formInputs() { //final output from here
+				return this.$store.getters.getFormInputs;
 			}
 		},
         methods: {
-			increase(){
-				this.$store.commit("increment");
-            }
         }
 	}
 </script>

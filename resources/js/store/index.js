@@ -1,29 +1,22 @@
 export default {
 
     state    : {
-        count: 0,
-        form : {},
-        raw  : [],
-        currentFormId: 1,
-        tempFormData : {},
-        formEdit : false,
+        form: {
+            inputs: {}
+        }
     },
     getters  : {
         getCount(state) { //take parameter state
             return state.count
         },
-        getForm(state) { //take parameter state
+        getForm(state) {
             return state.form
         },
-        getCurrentFormId(state) { //take parameter state
-            return state.currentFormId
-        },
-        getTempFormData(state) { //take parameter state
-            return state.tempFormData
-        },
-        getFormEdit(state) { //take parameter state
-            return state.formEdit
+        getFormInputs(state) {
+            return state.form.inputs
         }
+
+
     },
     mutations: {
         increment(state) {
@@ -34,19 +27,20 @@ export default {
             state.form = state.raw.find(x => x.id === state.currentFormId);
             console.log("loading form by index of: " + state.currentFormId);
         },
-        loadForm(state) {
-            state.form = state.raw.find(x => x.id === state.currentFormId);
-            console.log("loading form by index of: " + state.currentFormId);
-        },
-        changeCurrentForm(state, val) {
-          state.currentFormId = val;
-        },
-        setTempFormData(state, val) {
-            state.tempFormData = val;
-        },
         setFormEdit(state, val) {
             state.formEdit = val;
-        }
+        },
+        setFormInput(state, payload) {
+            if (state.form.inputs[payload.id]) {
+                state.form.inputs[payload.id] = payload.data;
+                //console.log('doesnt exist');
+            } else {
+                Vue.set(state.form.inputs, payload.id, payload.data);
+                //console.log('exists');
+            }
+
+        },
+
 
     },
     actions  : {
@@ -73,7 +67,7 @@ export default {
                 .then((response) => {
                     console.log('success');
                     console.log(response.data.record.id);
-                    context.commit("changeCurrentForm",response.data.record.id);
+                    context.commit("changeCurrentForm", response.data.record.id);
                     context.commit("saveRaw", response.data.forms);
                 })
                 .catch(() => {
