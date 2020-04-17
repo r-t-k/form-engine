@@ -37851,47 +37851,81 @@ var render = function() {
               _vm._v(" "),
               _c("option", [_vm._v("button")]),
               _vm._v(" "),
-              _c("option", [_vm._v("checkbox")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("checkbox")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("color")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("color")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("date")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("date")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("datetime-local")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("datetime-local")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("email")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("email")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("file")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("file")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("hidden")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("hidden")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("image")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("image")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("month")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("month")
+              ]),
               _vm._v(" "),
               _c("option", [_vm._v("number")]),
               _vm._v(" "),
               _c("option", [_vm._v("password")]),
               _vm._v(" "),
-              _c("option", [_vm._v("radio")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("radio")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("range")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("range")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("reset")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("reset")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("search")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("search")
+              ]),
               _vm._v(" "),
               _c("option", [_vm._v("submit")]),
               _vm._v(" "),
-              _c("option", [_vm._v("tel")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("tel")
+              ]),
               _vm._v(" "),
               _c("option", [_vm._v("text")]),
               _vm._v(" "),
-              _c("option", [_vm._v("time")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("time")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("url")]),
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("url")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("week")])
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("week")
+              ])
             ]
           )
         ]),

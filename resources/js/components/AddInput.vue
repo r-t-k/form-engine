@@ -5,27 +5,27 @@
             <select v-model="meta.type">
                 <option disabled value="">Choose Type</option>
                 <option>button</option>
-                <option>checkbox</option>
-                <option>color</option>
-                <option>date</option>
-                <option>datetime-local</option>
-                <option>email</option>
-                <option>file</option>
-                <option>hidden</option>
-                <option>image</option>
-                <option>month</option>
+                <option disabled value="">checkbox</option>
+                <option disabled value="">color</option>
+                <option disabled value="">date</option>
+                <option disabled value="">datetime-local</option>
+                <option disabled value="">email</option>
+                <option disabled value="">file</option>
+                <option disabled value="">hidden</option>
+                <option disabled value="">image</option>
+                <option disabled value="">month</option>
                 <option>number</option>
                 <option>password</option>
-                <option>radio</option>
-                <option>range</option>
-                <option>reset</option>
-                <option>search</option>
+                <option disabled value="">radio</option>
+                <option disabled value="">range</option>
+                <option disabled value="">reset</option>
+                <option disabled value="">search</option>
                 <option>submit</option>
-                <option>tel</option>
+                <option disabled value="">tel</option>
                 <option>text</option>
-                <option>time</option>
-                <option>url</option>
-                <option>week</option>
+                <option disabled value="">time</option>
+                <option disabled value="">url</option>
+                <option disabled value="">week</option>
             </select>
         </label>
         <label>
