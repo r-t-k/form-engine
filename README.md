@@ -12,3 +12,4 @@ A platform to replace Google Forms and provide a portable and customizable form 
 - Conditional templates for each HTML input type (FormInput)
 - Implement Form Kits (styles)
 - Create Add Section Component and adapt children
+- Fix FormInput: toggle delete button when state.edit = false
