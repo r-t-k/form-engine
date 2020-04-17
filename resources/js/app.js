@@ -47,6 +47,18 @@ Vue.component(
     'form-input',
     require('./components/FormInput.vue').default
 );
+Vue.component(
+    'form-section',
+    require('./components/FormSection.vue').default
+);
+Vue.component(
+    'add-input',
+    require('./components/AddInput.vue').default
+);
+Vue.component(
+    'edit-mode',
+    require('./components/EditMode.vue').default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

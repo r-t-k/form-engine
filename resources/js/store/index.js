@@ -1,7 +1,10 @@
 export default {
 
     state    : {
+        edit: true,
         form: {
+            id: '',
+            sections : {},
             inputs: {}
         }
     },
@@ -11,8 +14,13 @@ export default {
         },
         getFormInputs(state) {
             return state.form.inputs
+        },
+        getFormSections(state) {
+            return state.form.sections
+        },
+        getEdit(state) {
+            return state.edit
         }
-
 
     },
     mutations: {
@@ -35,8 +43,18 @@ export default {
             }
 
         },
-
-
+        setFormSection(state, payload) {
+            if (state.form.sections[payload.id]) {
+                state.form.sections[payload.id] = payload.data;
+                //console.log('doesnt exist');
+            } else {
+                Vue.set(state.form.sections, payload.id, payload.data);
+                //console.log('exists');
+            }
+        },
+        setEdit(state){
+            state.edit = !state.edit;
+        }
     },
     actions  : {
         /*getFormData(context) {
