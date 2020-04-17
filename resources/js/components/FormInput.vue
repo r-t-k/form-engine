@@ -4,7 +4,7 @@
             {{ label }}
             <input v-bind="$attrs" :input-id="meta.id" :name="meta.name" :type="meta.type" :order="meta.order" :section="meta.section" v-bind:value="meta.value" v-on:input="changeValue($event.target.value)">
         </label>
-        <button  @click="deleteSelf">X</button>
+        <button v-if="appEdit"  @click="deleteSelf">X</button>
     </div>
 </template>
 <script>

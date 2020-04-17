@@ -38426,7 +38426,9 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.deleteSelf } }, [_vm._v("X")])
+    _vm.appEdit
+      ? _c("button", { on: { click: _vm.deleteSelf } }, [_vm._v("X")])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
