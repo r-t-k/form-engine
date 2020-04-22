@@ -1911,8 +1911,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
-/* harmony import */ var _FormInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormInput */ "./resources/js/components/FormInput.vue");
+/* harmony import */ var _helpers_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers.js */ "./resources/js/helpers.js");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
+/* harmony import */ var _FormInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FormInput */ "./resources/js/components/FormInput.vue");
 //
 //
 //
@@ -1962,7 +1963,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddInput",
@@ -1983,11 +1985,18 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index_
   computed: {
     appEdit: function appEdit() {
       return this.$store.getters.getEdit;
+    },
+    formId: function formId() {
+      return this.$store.getters.getFormId;
     }
   },
   methods: {
-    createText: function createText() {
-      var ComponentClass = vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend(_FormInput__WEBPACK_IMPORTED_MODULE_3__["default"]);
+    setInputId: function setInputId() {
+      this.meta.inputId = _helpers_js__WEBPACK_IMPORTED_MODULE_2__["default"].genInputId(this.$store.getters.getFormId);
+    },
+    createInput: function createInput() {
+      this.setInputId();
+      var ComponentClass = vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend(_FormInput__WEBPACK_IMPORTED_MODULE_4__["default"]);
       var instance = new ComponentClass({
         /*propsData: {type: 'text', inputId: 'testClone', label: 'text clone'}*/
         propsData: this.meta,
@@ -37931,30 +37940,6 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("label", [
-          _vm._v("\n        input ID:\n        "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.meta.inputId,
-                expression: "meta.inputId"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.meta.inputId },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.meta, "inputId", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("label", [
           _vm._v("\n        input label:\n        "),
           _c("input", {
             directives: [
@@ -38002,7 +37987,7 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("button", { on: { click: _vm.createText } }, [_vm._v("Add Input")])
+        _c("button", { on: { click: _vm.createInput } }, [_vm._v("Add Input")])
       ])
     : _vm._e()
 }
@@ -52428,6 +52413,41 @@ module.exports = JSON.parse("{\"text\":{\"tag\":\"input\",\"selector\":\"kit-bas
 
 /***/ }),
 
+/***/ "./resources/js/helpers.js":
+/*!*********************************!*\
+  !*** ./resources/js/helpers.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Helpers = /*#__PURE__*/function () {
+  function Helpers() {
+    _classCallCheck(this, Helpers);
+  }
+
+  _createClass(Helpers, null, [{
+    key: "genInputId",
+    value: function genInputId() {
+      var base = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      return base + '_input_' + Date.now();
+    }
+  }]);
+
+  return Helpers;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Helpers);
+
+/***/ }),
+
 /***/ "./resources/js/store/index.js":
 /*!*************************************!*\
   !*** ./resources/js/store/index.js ***!
@@ -52441,7 +52461,7 @@ __webpack_require__.r(__webpack_exports__);
   state: {
     edit: true,
     form: {
-      id: '',
+      id: 'bastard_form',
       sections: {},
       inputs: {}
     }
@@ -52449,6 +52469,9 @@ __webpack_require__.r(__webpack_exports__);
   getters: {
     getForm: function getForm(state) {
       return state.form;
+    },
+    getFormId: function getFormId(state) {
+      return state.form.id;
     },
     getFormInputs: function getFormInputs(state) {
       return state.form.inputs;

@@ -3,7 +3,7 @@ export default {
     state    : {
         edit: true,
         form: {
-            id: '',
+            id: 'bastard_form',
             sections : {},
             inputs: {}
         }
@@ -11,6 +11,9 @@ export default {
     getters  : {
         getForm(state) {
             return state.form
+        },
+        getFormId(state) {
+            return state.form.id
         },
         getFormInputs(state) {
             return state.form.inputs

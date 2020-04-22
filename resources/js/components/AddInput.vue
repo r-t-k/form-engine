@@ -28,10 +28,10 @@
                 <option disabled value="">week</option>
             </select>
         </label>
-        <label>
+      <!--  <label>
             input ID:
             <input v-model="meta.inputId" type="text">
-        </label>
+        </label>-->
         <label>
             input label:
             <input v-model="meta.label" type="text">
@@ -40,13 +40,14 @@
             input default value:
             <input v-model="meta.value" type="text">
         </label>
-        <button @click="createText">Add Input</button>
+        <button @click="createInput">Add Input</button>
     </div>
 </template>
 
 <script>
 	import Vue from 'vue'
 	import Vuex from 'vuex'
+	import Helpers from "../helpers.js";
 	import storeData from "../store/index";
 	const store = new Vuex.Store(
 		storeData
@@ -72,10 +73,17 @@
 		computed    : {
 			appEdit(){
 				return this.$store.getters.getEdit;
+			},
+			formId(){
+				return this.$store.getters.getFormId;
 			}
 		},
 		methods: {
-			createText() {
+			setInputId() {
+				this.meta.inputId = Helpers.genInputId(this.$store.getters.getFormId);
+            },
+			createInput() {
+				this.setInputId();
 				var ComponentClass = Vue.extend(FormInput);
 				var instance = new ComponentClass({
 					/*propsData: {type: 'text', inputId: 'testClone', label: 'text clone'}*/
