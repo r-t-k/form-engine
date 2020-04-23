@@ -1,5 +1,5 @@
 <template>
-    <div class="form-section" ref="group">
+    <div class="form-section" ref="section">
         <slot></slot>
     </div>
 </template>
@@ -41,4 +41,7 @@
 </script>
 
 <style scoped>
+    .form-section {
+        background: red;
+    }
 </style>

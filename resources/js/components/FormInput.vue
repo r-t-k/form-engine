@@ -2,9 +2,10 @@
     <div class="form-input">
         <label>
             {{ label }}
-            <input v-bind="$attrs" :input-id="meta.id" :name="meta.name" :type="meta.type" :order="meta.order" :section="meta.section" v-bind:value="meta.value" v-on:input="changeValue($event.target.value)">
+            <input :class="group" v-bind="$attrs" :input-id="meta.id" :name="meta.name" :type="meta.type" :order="meta.order" :section="meta.group" v-bind:value="meta.value" v-on:input="changeValue($event.target.value)">
         </label>
         <button v-if="appEdit"  @click="deleteSelf">X</button>
+        <!--<button v-if="appEdit"  @click="">Modify</button>-->
     </div>
 </template>
 <script>
@@ -18,7 +19,7 @@
 			'name',
 			'type',
 			'placeholder',
-			'section',
+			'group',
 			'order',
 		],
 		data() {
@@ -30,7 +31,7 @@
 					placeholder: this.placeholder,
 					value      : this.value,
 					order      : this.order,
-					section    : this.section,
+					group    : this.group,
                     active: true
 				},
 			}

@@ -52,12 +52,20 @@ Vue.component(
     require('./components/FormSection.vue').default
 );
 Vue.component(
+    'add-form-section',
+    require('./components/AddSection.vue').default
+);
+Vue.component(
     'add-input',
     require('./components/AddInput.vue').default
 );
 Vue.component(
     'edit-mode',
     require('./components/EditMode.vue').default
+);
+Vue.component(
+    'fe-form',
+    require('./components/Form.vue').default
 );
 /**
  * Next, we will create a fresh Vue application instance and attach it to

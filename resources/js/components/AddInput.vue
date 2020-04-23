@@ -28,16 +28,20 @@
                 <option disabled value="">week</option>
             </select>
         </label>
-      <!--  <label>
-            input ID:
-            <input v-model="meta.inputId" type="text">
-        </label>-->
+        <!--  <label>
+              input ID:
+              <input v-model="meta.inputId" type="text">
+          </label>-->
         <label>
             input label:
             <input v-model="meta.label" type="text">
         </label>
         <label>
             input default value:
+            <input v-model="meta.value" type="text">
+        </label>
+        <label>
+            group:
             <input v-model="meta.value" type="text">
         </label>
         <button @click="createInput">Add Input</button>
@@ -49,13 +53,14 @@
 	import Vuex from 'vuex'
 	import Helpers from "../helpers.js";
 	import storeData from "../store/index";
+
 	const store = new Vuex.Store(
 		storeData
 	);
 	import FormInput from "./FormInput";
 
 	export default {
-		name   : "AddInput",
+		name    : "AddInput",
 		data() {
 			return {
 				meta: {
@@ -65,38 +70,44 @@
 					name       : '',
 					value      : '',
 					placeholder: '',
-					section    : '',
+					group      : '',
 					order      : ''
 				}
 			}
 		},
-		computed    : {
-			appEdit(){
+		computed: {
+			appEdit() {
 				return this.$store.getters.getEdit;
 			},
-			formId(){
+			formId() {
 				return this.$store.getters.getFormId;
 			}
 		},
-		methods: {
+		methods : {
 			setInputId() {
-				this.meta.inputId = Helpers.genInputId(this.$store.getters.getFormId);
-            },
+				if (!this.meta.inputId) {
+					this.meta.inputId = Helpers.genInputId(this.$store.getters.getFormId);
+				}
+			},
+			setSectionId() {
+				//this.meta.section = this.$parent.$props.sectionId;
+			},
 			createInput() {
 				this.setInputId();
+				//this.setSectionId();
 				var ComponentClass = Vue.extend(FormInput);
 				var instance = new ComponentClass({
 					/*propsData: {type: 'text', inputId: 'testClone', label: 'text clone'}*/
 					propsData: this.meta,
-                    store
+					store
 				});
 				/*instance.$slots.default = ['Click me!'];*/
 				instance.$mount(); // pass nothing
 //         console.log(this.$refs)
-				this.$parent.$refs["group"].appendChild(instance.$el);
-				for (var key in this.meta){
-					if (this.meta.hasOwnProperty(key)){
-						if (typeof this.meta[key] === 'string'){
+				this.$parent.$refs["form"].appendChild(instance.$el);
+				for (var key in this.meta) {
+					if (this.meta.hasOwnProperty(key)) {
+						if (typeof this.meta[key] === 'string') {
 							this.meta[key] = undefined;
 						} else if (this.meta[key] instanceof Array) {
 							this.meta[key] = [];
